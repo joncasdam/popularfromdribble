@@ -1,6 +1,11 @@
 # -*- encoding: utf-8 -*-
-#
+from dateutil.parser import parse as date_parser
+from imagekit.models import ImageSpecField
+from pilkit.processors import Adjust, resize
+
 from django.db import models
+
+from .utils import download_image
 
 
 class Player(models.Model):
@@ -27,6 +32,31 @@ class Player(models.Model):
     def __unicode__(self):
         return '%s' % self.name
 
+    @classmethod
+    def importa_player(cls, dados):
+        player, c = cls.objects.get_or_create(username=dados['username'], dribble_id=dados['id'])
+        if player:
+            player.name = dados['name']
+            player.avatar_url = dados['avatar_url']
+            player.location = dados['location']
+            player.created_at = date_parser(dados['created_at'])
+            player.website_url = dados['website_url']
+            player.twitter_username = dados['twitter_screen_name']
+            player.drafted_by_player_id = dados['drafted_by_player_id']
+            player.likes_count = dados['likes_count']
+            player.likes_received_count = dados['likes_received_count']
+            player.comments_count = dados['comments_count']
+            player.comments_received_count = dados['comments_received_count']
+            player.followers_count = dados['followers_count']
+            player.following_count = dados['following_count']
+            player.rebounds_count = dados['rebounds_count']
+            player.rebounds_received_count = dados['rebounds_received_count']
+            player.draftees_count = dados['draftees_count']
+            player.shots_count = dados['shots_count']
+            player.save()
+
+        return player
+
 
 class Entrada(models.Model):
     title = models.CharField(u'Título', null=True, blank=True, max_length=250)
@@ -49,3 +79,36 @@ class Entrada(models.Model):
 
     def __unicode__(self):
         return '%s' % self.title
+
+    @classmethod
+    def importa_entrada(cls, dados, player):
+        entrada, c = cls.objects.get_or_create(dribble_id=dados['id'], player=player)
+        if entrada:
+            entrada.title = dados['title']
+            entrada.description = dados['description']
+            entrada.views_count = dados['views_count']
+            entrada.url = dados['url']
+            entrada.short_url = dados['short_url']
+            entrada.created_at = date_parser(dados['created_at'])
+            entrada.likes_count = dados['likes_count']
+            entrada.comments_count = dados['comments_count']
+            entrada.rebounds_count = dados['rebounds_count']
+            entrada.height = dados['height']
+            entrada.width = dados['width']
+
+            if dados.get('image_400_url', None):
+                nome_400, arquivo_400 = download_image(dados['image_400_url'])
+                if nome_400 and arquivo_400:
+                    entrada.image_400_url.save(nome_400, arquivo_400)
+
+            nome_teaser, arquivo_teaser = download_image(dados['image_teaser_url'])
+            if nome_teaser and arquivo_teaser:
+                entrada.image_teaser_url.save(nome_teaser, arquivo_teaser)
+
+            nome_img, arquivo_img = download_image(dados['image_url'])
+            if nome_img and arquivo_img:
+                entrada.image_url.save(nome_img, arquivo_img)
+
+            entrada.save()
+        return entrada
+
