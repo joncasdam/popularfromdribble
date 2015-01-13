@@ -1,5 +1,6 @@
 .idea/*
 custom_settings.py
+media/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
