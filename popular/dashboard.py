@@ -60,40 +60,40 @@ class CustomIndexDashboard(Dashboard):
         ))
         
         # append another link list module for "support".
-        self.children.append(modules.LinkList(
-            _('Atualizar'),
-            column=2,
-            children=[
-                {
-                    'title': _('FileBrowser'),
-                    'url': '/admin/filebrowser/browse/',
-                    'external': False,
-                },
-            ]
-        ))
+        # self.children.append(modules.LinkList(
+        #     _('Atualizar'),
+        #     column=2,
+        #     children=[
+        #         {
+        #             'title': _('FileBrowser'),
+        #             'url': '/admin/filebrowser/browse/',
+        #             'external': False,
+        #         },
+        #     ]
+        # ))
         
         # append another link list module for "support".
-        self.children.append(modules.LinkList(
-            _('Support'),
-            column=2,
-            children=[
-                {
-                    'title': _('Django Documentation'),
-                    'url': 'http://docs.djangoproject.com/',
-                    'external': True,
-                },
-                {
-                    'title': _('Grappelli Documentation'),
-                    'url': 'http://packages.python.org/django-grappelli/',
-                    'external': True,
-                },
-                {
-                    'title': _('Grappelli Google-Code'),
-                    'url': 'http://code.google.com/p/django-grappelli/',
-                    'external': True,
-                },
-            ]
-        ))
+        # self.children.append(modules.LinkList(
+        #     _('Support'),
+        #     column=2,
+        #     children=[
+        #         {
+        #             'title': _('Django Documentation'),
+        #             'url': 'http://docs.djangoproject.com/',
+        #             'external': True,
+        #         },
+        #         {
+        #             'title': _('Grappelli Documentation'),
+        #             'url': 'http://packages.python.org/django-grappelli/',
+        #             'external': True,
+        #         },
+        #         {
+        #             'title': _('Grappelli Google-Code'),
+        #             'url': 'http://code.google.com/p/django-grappelli/',
+        #             'external': True,
+        #         },
+        #     ]
+        # ))
         
         # append a feed module
         # self.children.append(modules.Feed(
@@ -104,11 +104,11 @@ class CustomIndexDashboard(Dashboard):
         # ))
         
         # append a recent actions module
-        self.children.append(modules.RecentActions(
-            _('Recent Actions'),
-            limit=5,
-            collapsible=False,
-            column=3,
-        ))
+        # self.children.append(modules.RecentActions(
+        #     _('Recent Actions'),
+        #     limit=5,
+        #     collapsible=False,
+        #     column=3,
+        # ))
 
 

@@ -8,6 +8,7 @@ from .models import Player, Entrada
 class EntradaAdmin(admin.ModelAdmin):
     miniatura = AdminThumbnail(image_field='thumb_admin')
     list_display = ['title', 'miniatura']
+    search_fields = ['title']
 
 
 admin.site.register(Player)
