@@ -71,11 +71,17 @@ class Entrada(models.Model):
     rebounds_count = models.IntegerField(u'Rebounds', null=True, blank=True)
     height = models.IntegerField(u'Altura (px)', null=True, blank=True)
     width = models.IntegerField(u'Largura (px)', null=True, blank=True)
-    image_400_url = models.URLField(u'Imagem 400px')
+    image_400_url = models.ImageField(u'Imagem 400', upload_to='entradas', null=True, blank=False)
     # 'rebound_source_id',
-    image_url = models.URLField(u'Url imagem')
-    image_teaser_url = models.URLField(u'Imagem teaser')
-    dirbble_id = models.IntegerField(u'Id no dribble', null=True, blank=True)
+    image_url = models.ImageField(u'Url imagem', upload_to='entradas', null=True, blank=False)
+    thumb_image = ImageSpecField([Adjust(contrast=1.1, sharpness=1.1), resize.ResizeToFill(400, 300)],
+                                 source='image_url', format='PNG', options={'quality': 90})
+    thumb_400 = ImageSpecField([Adjust(contrast=1.1, sharpness=1.1), resize.ResizeToFill(400, 300)],
+                               source='image_url', format='PNG', options={'quality': 90})
+    thumb_teaser = ImageSpecField([Adjust(contrast=1.1, sharpness=1.1), resize.ResizeToFill(200, 150)],
+                                 source='image_url', format='PNG', options={'quality': 90})
+    image_teaser_url = models.ImageField(u'Imagem teaser', upload_to='entradas', null=True, blank=False)
+    dribble_id = models.IntegerField(u'Id no dribble', null=True, blank=True)
 
     def __unicode__(self):
         return '%s' % self.title
@@ -111,4 +117,3 @@ class Entrada(models.Model):
 
             entrada.save()
         return entrada
-
