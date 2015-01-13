@@ -1,8 +1,12 @@
 # -*- encoding: utf-8 -*-
 
-from django.core.files import File
+import urllib2
+
+import simplejson as json
+
 from django.core.management.base import BaseCommand
-from django.conf import settings
+
+from feed.models import Player, Entrada
 
 
 class Command(BaseCommand):
@@ -13,5 +17,14 @@ class Command(BaseCommand):
     help = 'Realiza carga inicial de posts'
 
     def handle(self, *args, **options):
-        print 'oooooo!!!!!!ooooooo'
-        self.stdout.write('oooooo!!!!!!ooooooo')
+        url = "http://api.dribbble.com/shots/popular"
+        req = urllib2.Request(url)
+        resposta = urllib2.urlopen(req).read()
+        dados = json.loads(resposta)
+        shots = dados['shots']
+        for shot in shots:
+            if shot.get('player', None):
+                print shot['image_url']
+                player = Player.importa_player(shot['player'])
+                entrada = Entrada.importa_entrada(shot, player)
+        self.stdout.write('------------ FIM -----------')
