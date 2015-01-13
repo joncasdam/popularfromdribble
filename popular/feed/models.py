@@ -80,6 +80,8 @@ class Entrada(models.Model):
                                source='image_url', format='PNG', options={'quality': 90})
     thumb_teaser = ImageSpecField([Adjust(contrast=1.1, sharpness=1.1), resize.ResizeToFill(200, 150)],
                                  source='image_url', format='PNG', options={'quality': 90})
+    thumb_admin = ImageSpecField([Adjust(contrast=1.1, sharpness=1.1), resize.ResizeToFill(100, 75)],
+                                 source='image_url', format='PNG', options={'quality': 90})
     image_teaser_url = models.ImageField(u'Imagem teaser', upload_to='entradas', null=True, blank=False)
     dribble_id = models.IntegerField(u'Id no dribble', null=True, blank=True)
 
