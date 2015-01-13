@@ -91,7 +91,6 @@ STATICFILES_DIRS = (
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
-print MEDIA_ROOT
 MEDIA_URL = '/media/'
 
 BOOTSTRAP3 = {
