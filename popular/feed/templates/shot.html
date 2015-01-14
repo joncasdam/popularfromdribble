@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+  <div class="container-fluid">
+  {% for s in shots %}
+    <div>
+      <img src="{{ s.image_url }}" class="img-responsive" alt="{{ s.title }}">
+      <span>
+        <h3>{{ s.title }}</h3>
+        {% autoescape off %}{{ s.description }}{% endautoescape %}
+      </span>
+    </div>
+    <hr>
+  {% endfor %}
+  </div>
+{% endblock %}
