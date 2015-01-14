@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 
 import urllib2
-
 import simplejson as json
 
 from django.core.management.base import BaseCommand
+from django.conf import settings
 
 from feed.models import Player, Entrada
 
@@ -17,8 +17,7 @@ class Command(BaseCommand):
     help = 'Realiza carga inicial de posts'
 
     def handle(self, *args, **options):
-        url = "http://api.dribbble.com/shots/popular"
-        req = urllib2.Request(url)
+        req = urllib2.Request(settings.DRIBBLE_POPULAR_URL)
         resposta = urllib2.urlopen(req).read()
         dados = json.loads(resposta)
         shots = dados['shots']

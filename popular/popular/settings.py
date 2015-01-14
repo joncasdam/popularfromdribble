@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 GRAPPELLI_ADMIN_TITLE = u'Dribble popular posts'
 GRAPPELLI_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
 
+DRIBBLE_POPULAR_URL = "http://api.dribbble.com/shots/popular"
+
 # Application definition
 
 TEMPLATE_CONTEXT_PROCESSORS = (
