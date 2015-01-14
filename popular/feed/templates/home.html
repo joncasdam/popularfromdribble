@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-
+  <div class="container-fluid">
+  {% for s in shots %}
+    <div>
+      <a href="{% url 'shot' s.id %}"><img src="{{ s.image_url }}" class="img-responsive" alt="{{ s.title }}"></a><br />
+    </div>
+  {% endfor %}
+  </div>
 {% endblock %}
