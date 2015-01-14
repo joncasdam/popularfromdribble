@@ -119,3 +119,12 @@ class Entrada(models.Model):
 
             entrada.save()
         return entrada
+
+    def to_dict(self):
+        return {'id': self.id,
+                'title': self.title,
+                'description': self.description,
+                'image_url': self.thumb_image.url if self.image_url else None,
+                'autor': self.player.name,
+                'avatar_autor': self.player.avatar_url,
+                'views': self.views_count}
