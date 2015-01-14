@@ -74,7 +74,7 @@ class Entrada(models.Model):
     image_400_url = models.ImageField(u'Imagem 400', upload_to='entradas', null=True, blank=False)
     # 'rebound_source_id',
     image_url = models.ImageField(u'Url imagem', upload_to='entradas', null=True, blank=False)
-    thumb_image = ImageSpecField([Adjust(contrast=1.1, sharpness=1.1), resize.ResizeToFill(400, 300)],
+    thumb_image = ImageSpecField([Adjust(contrast=1.1, sharpness=1.1), resize.ResizeToFill(800, 600)],
                                  source='image_url', format='PNG', options={'quality': 90})
     thumb_400 = ImageSpecField([Adjust(contrast=1.1, sharpness=1.1), resize.ResizeToFill(400, 300)],
                                source='image_url', format='PNG', options={'quality': 90})
