@@ -2,15 +2,14 @@
 
 {% block conteudo %}
   <div class="container-fluid">
-  {% for s in shots %}
     <div>
-      <img src="{{ s.image_url }}" class="img-responsive" alt="{{ s.title }}">
+      <img src="{{ image_url }}" class="img-responsive" alt="{{ title }}">
       <span>
-        <h3>{{ s.title }}</h3>
-        {% autoescape off %}{{ s.description }}{% endautoescape %}
+        <h3>{{ title }}</h3>
+        {% autoescape off %}{{ description }}{% endautoescape %}
       </span>
     </div>
+    <a href="{% url  'home' %}">< Voltar</a>
     <hr>
-  {% endfor %}
   </div>
 {% endblock %}
