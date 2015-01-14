@@ -2,9 +2,11 @@
 import os
 from urlparse import urlparse
 import urllib2
+import simplejson as json
 
 from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
+from django.conf import settings
 
 
 def download_image(url):
@@ -20,3 +22,13 @@ def download_image(url):
         pass
 
     return None, None
+
+def fetch_popular_from_dribble():
+    try:
+        req = urllib2.Request(settings.DRIBBLE_POPULAR_URL)
+        resposta = urllib2.urlopen(req).read()
+        dados = json.loads(resposta)
+        return dados
+    except:
+        pass
+    return None
