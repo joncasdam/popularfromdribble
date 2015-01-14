@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 
 from django.shortcuts import render
-from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
 
 from.utils import fetch_popular_from_dribble

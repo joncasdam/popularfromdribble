@@ -4,10 +4,10 @@
   <div class="container-fluid">
     <div>
       <img src="{{ image_url }}" class="img-responsive" alt="{{ title }}">
-      <span>
-        <h3>{{ title }}</h3>
-        {% autoescape off %}{{ description }}{% endautoescape %}
-      </span>
+      <h4>{{ title }} <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+        {{ views }}</h4>
+      <h4><img src="{{ avatar_autor }}" class="img-circle" alt="{{ title }}"> {{ autor }}</h4>
+      {% autoescape off %}{{ description }}{% endautoescape %}
     </div>
     <a href="{% url  'home' %}">< Voltar</a>
     <hr>
