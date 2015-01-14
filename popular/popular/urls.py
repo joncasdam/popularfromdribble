@@ -5,6 +5,7 @@ from django.conf import settings
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'feed.views.home', name='home'),
+    url(r'^shot/(?P<shot_id>\d+)/', 'feed.views.shot', name='shot'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^grappelli/', include('grappelli.urls')),
